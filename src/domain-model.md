@@ -38,11 +38,26 @@ Objects: Basket, Bagel
 Properties: Capacity, ID
 Verbs: Add, Remove, Know when (is full), Create, Know if (item isn't in basket)
 
-| Objects | Properties    | Messages       | Messages to messages | Output                                                 |
-| :------ | :------------ | :------------- | :------------------- | :----------------------------------------------------- |
-| Basket  | contents      | add            | isFull?              | contents + new item with next ID, increment ID counter |
-|         | capacity(num) | remove         | containsItemofThisID | contents - the removed item                            |
-|         | ID counter    | changeCapacity |                      | number                                                 |
-|         | price key     | sumPrices      |                      | function that adds all prices                          |
-| Bagel   | ID            | checkPrice     |                      |                                                        |
-|         | Price         |                |                      |                                                        |
+<!-- re-format the table -->
+<!-- data types are missing -->
+<!-- scenarios are missing -->
+<!-- messages to messages ??? -->
+<!-- four outputs, seven methods in basket.js -->
+| Objects  | Properties | Messages | Notes    | Scenarios | Output |
+| - | - | -| - | - | - |
+| Basket   | contents(@object[]), capacity(num(@)integer), ID counter, price key    |
+| | | addBagel(sku(@string), numOfBagels(@integer))| (note: includes new item with next ID), increment ID counter | sku is valid | contents(@Object[])|
+| | | | TO BE ADDED | sku is NOT valid | throw error |
+|          | | removeBagel(id(@integer)) | | bagel found | contents(@Object[]) |
+|          | | | TO BE ADDED | bagel not found | throw error|
+|          | | setCapacity(newCapacity(@Integer))| | new capacity is a positive integer| capacity(@integer) |
+|          | | setCapacity(newCapacity(@Integer))| TO BE ADDED | new capacity is not a positive integer| throw error |
+|          | | getTotal()| | | total(@number) |
+|          | | countBagelsInBasket()|| | count(@number) |
+|          | | getSubTotal()|| | subTotal(@number) |
+|          | | basketIsFull()? || output: inconsistent | @string / @boolean|
+|          | | containsItemofThisID()? | MISSING FROM CODE BASE| if item found | true|
+|          | |  | | if item not found| false|
+| Bagel    |  ID(@integer)|
+| |        | getPriceOfBagel(sku(@string)) ||| price(@number)|
+| |        | getTypeOfBagel(sku(@string)) ||| variant(@string)|
