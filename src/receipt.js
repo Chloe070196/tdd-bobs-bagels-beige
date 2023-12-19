@@ -10,7 +10,7 @@ class Receipt {
 
   // will only work is this.total is added to Basket()
   getReceipt() {
-    if (this.purchases.length === 0) return ""
+    if (!this.purchases) return ""
 
     return `
     ~~~ Bob's Bagels ~~~    
@@ -18,14 +18,14 @@ class Receipt {
        ${this.date.toDateString()}
 ----------------------------
 ${this.getPurchaseList()}
-Total                 £${Number(Basket.total.toFixed(2))}
+Total                 £${Number(this.total.toFixed(2))}
         Thank you
       for your order!         `
   }
 
-  addItemName(receiptLine, sku) {
-    receiptLine += Bagel.getTypeOfBagel(sku)
-      ? Bagel.getTypeOfBagel(sku)
+  addItemName(receiptLine, item) {
+    receiptLine += item.sku !== "COF"
+      ? item.type
       : 'Coffee'
   }
 
@@ -49,9 +49,9 @@ Total                 £${Number(Basket.total.toFixed(2))}
     receiptLine += this.purchases[sku]
   }
 
-  addItemTotalPrice(receiptLine, sku) {
+  addItemTotalPrice(receiptLine, item) {
     receiptLine += '£'
-    const subtotal = Basket.getSubtotal(this.purchases, sku)
+    const subtotal = item.getSubtotal()
     receiptLine += subtotal
   }
 
@@ -60,11 +60,11 @@ Total                 £${Number(Basket.total.toFixed(2))}
     let purchaseLines = ''
     this.purchases.forEach((item) => {
       const receiptLine = ''
-      this.addItemName(receiptLine, item.sku)
+      this.addItemName(receiptLine, item)
       this.setLineLengthTo19(receiptLine)
-      this.setLineLengthTo23(receiptLine, item.sku)
-      this.addItemQuantity(receiptLine, item.sku)
-      this.addItemTotalPrice(receiptLine, item.sku)
+      this.setLineLengthTo23(receiptLine)
+      this.addItemQuantity(receiptLine, item)
+      this.addItemTotalPrice(receiptLine, item)
       purchaseLines += `${receiptLine}\n`
     })
     return purchaseLines
