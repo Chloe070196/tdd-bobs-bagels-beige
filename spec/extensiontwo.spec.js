@@ -18,14 +18,17 @@ fdescribe("Receipts", () => {
     });
 
     fit("returns a receipt with all purchases", () => {
-        basket.addBagel('BGLO',2)
+        basket.addBagel('BGLO')
+        basket.contents[0].setQuantity(2)
         basket.addBagel('BGLP',12)
+        basket.contents[1].setQuantity(12)
         basket.addBagel('BGLE',6)
+        basket.contents[2].setQuantity(6)
         basket.addBagel('COF',3)
+        basket.contents[3].setQuantity(3)
         const testReceipt = new Receipt(basket)
         const expected = `Onion              2   £0.98\nPlain              12  £3.99\nEverything         6   £2.49\nCoffee             3   £2.97\n`
         const result = testReceipt.getPurchaseList()
-        testReceipt.getReceipt()
         expect(result).toEqual(expected);
     });
 
