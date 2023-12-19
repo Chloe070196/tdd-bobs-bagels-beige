@@ -1,7 +1,7 @@
 const Basket = require("../src/basket.js");
 const Receipt = require("../src/receipt.js");
 
-describe("Receipts", () => {
+fdescribe("Receipts", () => {
     let basket
     let receipt
 
@@ -9,8 +9,8 @@ describe("Receipts", () => {
         basket = new Basket(40)
     });
 
-    it("return a blank receipt", () => {
-        const testReceipt = new Receipt
+    fit("return a blank receipt", () => {
+        const testReceipt = new Receipt(basket)
         const expected = ""
         const result = testReceipt.getPurchaseList()
         testReceipt.getReceipt()

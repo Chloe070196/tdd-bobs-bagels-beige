@@ -2,14 +2,16 @@ const { Bagel } = require('../src/bagel.js')
 const Basket = require('../src/basket.js')
 
 class Receipt {
-  constructor(obj = {}) {
-    this.purchases = obj
+  constructor(basketObj) {
+    this.purchases = basketObj.contents
     this.date = new Date()
     this.total = 0
   }
 
   // will only work is this.total is added to Basket()
   getReceipt() {
+    if (this.purchases.length === 0) return ""
+
     return `
     ~~~ Bob's Bagels ~~~    
 
